@@ -1,459 +1,78 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>SANCAKLAR YAPI - Prefabrik ve İnşaat Çözümleri</title>
+    <meta name="description" content="SANCAKLAR YAPI - Anahtar teslim hafif/ ağır çelik villalar, prefabrik evler, bina güçlendirme, hangarlar, tiny house, bungalov.">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: 'Arial', sans-serif;
-            line-height: 1.6;
-            color: #333;
-            overflow-x: hidden;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
+        *{margin:0;padding:0;box-sizing:border-box}
+        body{font-family:Arial, sans-serif;color:#333;line-height:1.6;overflow-x:hidden;padding-top:84px;background:#fff}
+        .container{max-width:1200px;margin:0 auto;padding:0 20px}
 
         /* Header */
-        header {
-            background: linear-gradient(135deg, #1a1a1a 0%, #2c2c2c 100%);
-            color: white;
-            padding: 1rem 0;
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        header{position:fixed;top:0;left:0;width:100%;z-index:1000;background:linear-gradient(135deg,#053e4a 0%,#0b5965 100%);color:#fff;box-shadow:0 2px 8px rgba(0,0,0,.2)}
+        nav.container{display:flex;align-items:center;justify-content:space-between;padding:14px 20px}
+        .brand{display:flex;align-items:center;gap:12px}
+        .brand img{height:48px;width:auto;border-radius:4px}
+        .logo-text{font-size:1.25rem;font-weight:700;letter-spacing:.6px;color:#fff}
+        .nav-links{display:flex;gap:1rem;list-style:none}
+        .nav-links a{color:#f1f1f1;text-decoration:none;padding:8px 10px;border-radius:6px;transition:background .2s,color .2s}
+        .nav-links a:hover{background:rgba(255,255,255,.06);color:#ffd0b8}
+        .mobile-menu{display:none;flex-direction:column;gap:4px;cursor:pointer}
+        .mobile-menu span{width:26px;height:3px;background:#fff;border-radius:2px;display:block}
+
+        /* Hero */
+        .hero{height:70vh;min-height:420px;background:linear-gradient(rgba(5,62,74,.6),rgba(5,62,74,.45)), url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><rect fill="%23e8e8e8" width="1200" height="600"/><rect fill="%23d4d4d4" x="100" y="150" width="200" height="300"/><rect fill="%23c0c0c0" x="350" y="100" width="250" height="350"/><rect fill="%23b8b8b8" x="650" y="120" width="180" height="330"/><rect fill="%23a8a8a8" x="880" y="80" width="220" height="370"/><text x="600" y="550" text-anchor="middle" fill="%23999" font-family="Arial" font-size="24">Modern İnşaat Projesi</text></svg>') center/cover no-repeat;color:#fff;display:flex;align-items:center}
+        .hero .container{display:flex;align-items:center;justify-content:center}
+        .hero-content{text-align:center;max-width:900px;padding:40px}
+        .hero-content h1{font-size:2.6rem;margin-bottom:0.6rem;letter-spacing:1px}
+        .hero-content p{font-size:1.05rem;margin-bottom:1rem;opacity:.95}
+        .cta-button{background:#ff6b35;color:#fff;padding:12px 26px;border-radius:999px;text-decoration:none;font-weight:700;display:inline-block;box-shadow:0 6px 18px rgba(255,107,53,.18);transition:transform .2s}
+        .cta-button:hover{transform:translateY(-3px)}
+
+        /* Sections */
+        section{padding:60px 0}
+        .section-title{text-align:center;font-size:2rem;margin-bottom:30px;color:#053e4a}
+
+        /* Services / Ürün Portföyü */
+        .services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px}
+        .service-card{background:#fff;padding:18px;border-radius:12px;box-shadow:0 6px 18px rgba(0,0,0,.06);text-align:center}
+        .service-icon{width:72px;height:72px;border-radius:50%;background:#ff6b35;margin:0 auto 12px;display:flex;align-items:center;justify-content:center;font-size:1.6rem;color:#fff}
+        .service-card h3{margin-bottom:8px;color:#0b5965}
+
+        /* Projects */
+        .projects-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px}
+        .project-card{background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 8px 22px rgba(0,0,0,.07);transition:transform .25s}
+        .project-card:hover{transform:translateY(-6px)}
+        .project-image{height:200px;background:#ddd;display:block;object-fit:cover;width:100%}
+        .project-info{padding:14px}
+        .project-meta{display:flex;justify-content:space-between;color:#777;font-size:.9rem;margin-top:8px}
+
+        /* Contact */
+        .contact{background:#053e4a;color:#fff}
+        .contact-content{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+        .contact-info h3{color:#ffb894;margin-bottom:12px}
+        .contact-item{display:flex;gap:12px;align-items:flex-start;margin-bottom:10px}
+        .contact-icon{width:40px;height:40;border-radius:8px;background:#ff6b35;display:flex;align-items:center;justify-content:center;font-weight:700;color:#fff}
+        .contact-form input,.contact-form textarea{width:100%;padding:10px;border-radius:8px;border:none;font-size:1rem;margin-bottom:8px}
+        .submit-btn{background:#ff6b35;border:none;padding:12px 18px;border-radius:8px;color:#fff;cursor:pointer;font-weight:700}
+
+        footer{background:#021e24;color:#dfeef0;text-align:center;padding:20px 0;margin-top:30px}
+
+        /* Responsive & mobile menu */
+        @media (max-width: 900px){
+            .nav-links{display:none;position:absolute;top:72px;right:20px;background:linear-gradient(180deg,#073f49,#042f35);padding:12px;border-radius:8px;flex-direction:column;width:220px}
+            .nav-links.active{display:flex}
+            .mobile-menu{display:flex}
+            .contact-content{grid-template-columns:1fr}
+            .about-content{grid-template-columns:1fr}
+            .hero-content h1{font-size:2rem}
         }
-
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-size: 1.8rem;
-            font-weight: bold;
-            color: #ff6b35;
-        }
-
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 2rem;
-        }
-
-        .nav-links a {
-            color: white;
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-
-        .nav-links a:hover {
-            color: #ff6b35;
-        }
-
-        .mobile-menu {
-            display: none;
-            flex-direction: column;
-            cursor: pointer;
-        }
-
-        .mobile-menu span {
-            width: 25px;
-            height: 3px;
-            background: white;
-            margin: 3px 0;
-            transition: 0.3s;
-        }
-
-        /* Hero Section */
-        .hero {
-            height: 100vh;
-            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><rect fill="%23e8e8e8" width="1200" height="600"/><rect fill="%23d4d4d4" x="100" y="150" width="200" height="300"/><rect fill="%23c0c0c0" x="350" y="100" width="250" height="350"/><rect fill="%23b8b8b8" x="650" y="120" width="180" height="330"/><rect fill="%23a8a8a8" x="880" y="80" width="220" height="370"/><text x="600" y="550" text-anchor="middle" fill="%23999" font-family="Arial" font-size="24">Modern İnşaat Projesi</text></svg>');
-            background-size: cover;
-            background-position: center;
-            display: flex;
-            align-items: center;
-            text-align: center;
-            color: white;
-        }
-
-        .hero-content h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1rem;
-            animation: fadeInUp 1s ease-out;
-        }
-
-        .hero-content p {
-            font-size: 1.3rem;
-            margin-bottom: 2rem;
-            animation: fadeInUp 1s ease-out 0.2s both;
-        }
-
-        .cta-button {
-            display: inline-block;
-            background: #ff6b35;
-            color: white;
-            padding: 15px 30px;
-            text-decoration: none;
-            border-radius: 50px;
-            font-size: 1.1rem;
-            transition: all 0.3s ease;
-            animation: fadeInUp 1s ease-out 0.4s both;
-        }
-
-        .cta-button:hover {
-            background: #e55a2e;
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(255, 107, 53, 0.4);
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* Services Section */
-        .services {
-            padding: 80px 0;
-            background: #f8f9fa;
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 3rem;
-            color: #333;
-        }
-
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .service-card {
-            background: white;
-            padding: 2rem;
-            border-radius: 15px;
-            text-align: center;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .service-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-        }
-
-        .service-icon {
-            width: 80px;
-            height: 80px;
-            background: #ff6b35;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 1rem;
-            font-size: 2rem;
-            color: white;
-        }
-
-        .service-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            color: #333;
-        }
-
-        .service-card p {
-            color: #666;
-            line-height: 1.6;
-        }
-
-        /* About Section */
-        .about {
-            padding: 80px 0;
-            background: white;
-        }
-
-        .about-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-            align-items: center;
-        }
-
-        .about-text h2 {
-            font-size: 2.5rem;
-            margin-bottom: 1.5rem;
-            color: #333;
-        }
-
-        .about-text p {
-            font-size: 1.1rem;
-            color: #666;
-            margin-bottom: 1.5rem;
-            line-height: 1.8;
-        }
-
-        .stats {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 1rem;
-            margin-top: 2rem;
-        }
-
-        .stat-item {
-            text-align: center;
-            padding: 1rem;
-            background: #f8f9fa;
-            border-radius: 10px;
-        }
-
-        .stat-number {
-            font-size: 2rem;
-            font-weight: bold;
-            color: #ff6b35;
-        }
-
-        .stat-label {
-            color: #666;
-            font-size: 0.9rem;
-        }
-
-        .about-image {
-            height: 400px;
-            background: linear-gradient(45deg, #ff6b35, #e55a2e);
-            border-radius: 15px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .about-image::before {
-            content: '🏗️';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 8rem;
-            opacity: 0.3;
-        }
-
-        /* Projects Section */
-        .projects {
-            padding: 80px 0;
-            background: #f8f9fa;
-        }
-
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2rem;
-        }
-
-        .project-card {
-            background: white;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease;
-        }
-
-        .project-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .project-image {
-            height: 250px;
-            background: linear-gradient(45deg, #ddd, #bbb);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .project-image::before {
-            content: '🏢';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 4rem;
-            opacity: 0.5;
-        }
-
-        .project-info {
-            padding: 1.5rem;
-        }
-
-        .project-info h3 {
-            font-size: 1.3rem;
-            margin-bottom: 0.5rem;
-            color: #333;
-        }
-
-        .project-info p {
-            color: #666;
-            margin-bottom: 1rem;
-        }
-
-        .project-meta {
-            display: flex;
-            justify-content: space-between;
-            font-size: 0.9rem;
-            color: #999;
-        }
-
-        /* Contact Section */
-        .contact {
-            padding: 80px 0;
-            background: #333;
-            color: white;
-        }
-
-        .contact-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-        }
-
-        .contact-info h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            color: #ff6b35;
-        }
-
-        .contact-item {
-            display: flex;
-            align-items: center;
-            margin-bottom: 1rem;
-        }
-
-        .contact-icon {
-            width: 40px;
-            height: 40px;
-            background: #ff6b35;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-right: 1rem;
-            font-size: 1.2rem;
-        }
-
-        .contact-form {
-            display: grid;
-            gap: 1rem;
-        }
-
-        .form-group {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .form-group label {
-            margin-bottom: 0.5rem;
-            color: #ff6b35;
-        }
-
-        .form-group input,
-        .form-group textarea {
-            padding: 12px;
-            border: none;
-            border-radius: 8px;
-            font-size: 1rem;
-            background: #f8f9fa;
-        }
-
-        .submit-btn {
-            background: #ff6b35;
-            color: white;
-            border: none;
-            padding: 15px 30px;
-            border-radius: 8px;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: background 0.3s ease;
-        }
-
-        .submit-btn:hover {
-            background: #e55a2e;
-        }
-
-        /* Footer */
-        footer {
-            background: #1a1a1a;
-            color: white;
-            text-align: center;
-            padding: 2rem 0;
-        }
-
-        /* Mobile Responsive */
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
-            
-            .mobile-menu {
-                display: flex;
-            }
-
-            .hero-content h1 {
-                font-size: 2.5rem;
-            }
-
-            .hero-content p {
-                font-size: 1.1rem;
-            }
-
-            .about-content {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-
-            .contact-content {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-
-            .stats {
-                grid-template-columns: 1fr;
-            }
-
-            .section-title {
-                font-size: 2rem;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .hero-content h1 {
-                font-size: 2rem;
-            }
-
-            .services-grid,
-            .projects-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .container {
-                padding: 0 15px;
-            }
+        @media (max-width:480px){
+            .hero{height:58vh}
+            .hero-content h1{font-size:1.5rem}
+            .service-icon{width:64px;height:64px}
         }
     </style>
 </head>
@@ -461,285 +80,148 @@
     <!-- Header -->
     <header>
         <nav class="container">
-            <div class="logo">SANCAKLAR YAPI</div>
-            <ul class="nav-links">
+            <div class="brand">
+                <!-- LOGO: index.html ile aynı klasöre 'logo.jpg' koy -->
+                <img src="logo.jpg" alt="SANCAKLAR YAPI Logo" onerror="this.style.display='none'"/>
+                <div class="logo-text">SANCAKLAR YAPI</div>
+            </div>
+            <ul class="nav-links" id="navLinks">
                 <li><a href="#home">Ana Sayfa</a></li>
-                <li><a href="#services">Hizmetler</a></li>
                 <li><a href="#about">Hakkımızda</a></li>
-                <li><a href="#projects">Projeler</a></li>
+                <li><a href="#products">Ürün Portföyümüz</a></li>
+                <li><a href="#completed">Biten Projeler</a></li>
+                <li><a href="#ongoing">Devam Eden Projeler</a></li>
                 <li><a href="#contact">İletişim</a></li>
             </ul>
-            <div class="mobile-menu">
-                <span></span>
-                <span></span>
-                <span></span>
+            <div class="mobile-menu" id="mobileToggle" aria-label="menu" role="button">
+                <span></span><span></span><span></span>
             </div>
         </nav>
     </header>
 
-    <!-- Hero Section -->
-    <section class="hero" id="home">
+    <!-- Hero -->
+    <section class="hero" id="home" aria-label="Ana Sayfa">
         <div class="container">
             <div class="hero-content">
-                <h1></h1>
-                <p></p>
+                <h1>SANCAKLAR YAPI — Prefabrik & Çelik Yapılar</h1>
+                <p>Anahtar teslim hafif ve ağır çelik villalar, prefabrik evler, hangarlar, tiny house ve daha fazlası. Profesyonel proje, üretim ve montaj hizmetleri.</p>
                 <a href="#contact" class="cta-button">Teklif Alın</a>
             </div>
         </div>
     </section>
 
-    <!-- Services Section -->
-    <section class="services" id="services">
+    <!-- About -->
+    <section class="about" id="about">
         <div class="container">
-            <h2 class="section-title">Hizmetlerimiz</h2>
+            <h2 class="section-title">Hakkımızda</h2>
+            <div class="about-content" style="display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:center">
+                <div class="about-text">
+                    <h3>Neden Bizi Tercih Etmelisiniz?</h3>
+                    <p>15 yıllık sektör tecrübesiyle SANCAKLAR YAPI, proje tasarımından üretim ve montaja kadar tüm süreçleri titizlikle yürütür. TSE ve ilgili standartlara uygun üretim, hızlı teslimat ve müşteri memnuniyeti önceliğimizdir.</p>
+                    <p><strong>Adres:</strong> Cevizli Mah. Tugay Yolu Cad. No:20/A Maltepe / İSTANBUL</p>
+                    <p><strong>E-posta:</strong> yapisancaklar@gmail.com</p>
+                    <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:14px">
+                        <div style="background:#f8f9fa;padding:12px;border-radius:10px">
+                            <div style="font-weight:700;color:#ff6b35;font-size:1.4rem">500+</div>
+                            <div style="color:#555">Tamamlanan Proje</div>
+                        </div>
+                        <div style="background:#f8f9fa;padding:12px;border-radius:10px">
+                            <div style="font-weight:700;color:#ff6b35;font-size:1.4rem">15+</div>
+                            <div style="color:#555">Yıl Deneyim</div>
+                        </div>
+                    </div>
+                </div>
+                <div style="height:300px;border-radius:12px;background:linear-gradient(45deg,#ff6b35,#e55a2e);display:flex;align-items:center;justify-content:center;color:white;font-size:3rem">
+                    🏗️
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products / Ürün Portföyü -->
+    <section id="products">
+        <div class="container">
+            <h2 class="section-title">Ürün Portföyümüz</h2>
             <div class="services-grid">
                 <div class="service-card">
                     <div class="service-icon">🏠</div>
-                    <h3>Prefabrik Konutlar</h3>
-                    <p>Modern tasarım ve yüksek kaliteli malzemelerle hızlı kurulum sağlayan prefabrik ev ve villa çözümleri.</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">🏢</div>
-                    <h3>Ticari Binalar</h3>
-                    <p>Ofis binaları, mağazalar ve endüstriyel tesisler için dayanıklı ve estetik yapı çözümleri.</p>
+                    <h3>Anahtar Teslim Hafif Çelik Villalar</h3>
+                    <p>Hızlı üretim, hafif çelik taşıyıcı sistemlerle modern çözümler.</p>
                 </div>
                 <div class="service-card">
                     <div class="service-icon">🏗️</div>
-                    <h3>Şantiye Binaları</h3>
-                    <p>İnşaat sahalarında kullanım için pratik ve fonksiyonel geçici yapı sistemleri.</p>
+                    <h3>Ağır Çelik Villalar</h3>
+                    <p>Yüksek mukavemet gerektiren yapılar için ağır çelik tasarımlar.</p>
                 </div>
                 <div class="service-card">
-                    <div class="service-icon">🔒</div>
-                    <h3>Güvenlik Yapıları</h3>
-                    <p>Karakol, bekçi kulübesi ve güvenlik noktaları için özel tasarım güvenlik yapıları.</p>
+                    <div class="service-icon">🏡</div>
+                    <h3>Prefabrik Evler</h3>
+                    <p>Ekonomik, hızlı ve dayanıklı prefabrik konut çözümleri.</p>
                 </div>
                 <div class="service-card">
-                    <div class="service-icon">🏥</div>
-                    <h3>Sağlık Tesisleri</h3>
-                    <p>Hastane, klinik ve sağlık ocakları için hijyenik ve standartlara uygun yapılar.</p>
+                    <div class="service-icon">🛠️</div>
+                    <h3>Bina Güçlendirme</h3>
+                    <p>Yapısal güçlendirme ve istinat çözümleri ile güvenli binalar.</p>
                 </div>
                 <div class="service-card">
-                    <div class="service-icon">🎓</div>
-                    <h3>Eğitim Binaları</h3>
-                    <p>Okul, kreş ve eğitim kurumları için güvenli ve konforlu öğrenme ortamları.</p>
+                    <div class="service-icon">🏭</div>
+                    <h3>Ağır & Hafif Çelik Hangarlar</h3>
+                    <p>Endüstriyel kullanım için geniş açıklıklı, dayanıklı hangarlar.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🌲</div>
+                    <h3>Tiny House & Bungalov</h3>
+                    <p>Doğa ile uyumlu, hızlı konfigürasyonlu küçük yaşam alanları.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- About Section -->
-    <section class="about" id="about">
+    <!-- Completed Projects -->
+    <section id="completed">
         <div class="container">
-            <div class="about-content">
-                <div class="about-text">
-                    <h2>Neden Bizi Tercih Etmelisiniz?</h2>
-                    <p>15 yıllık deneyimimizle prefabrik yapı sektöründe öncü bir firmayız. Müşteri memnuniyetini ön planda tutarak, TSE standartlarında üretim yapıyoruz.</p>
-                    <p>Projelendirmeden tasarıma, üretimden kuruluma kadar tüm süreçleri kendi bünyemizde yürütüyor, sektörün lider hammadde tedarikçileri ile çalışıyoruz.</p>
-                    <div class="stats">
-                        <div class="stat-item">
-                            <div class="stat-number">500+</div>
-                            <div class="stat-label">Tamamlanan Proje</div>
-                        </div>
-                        <div class="stat-item">
-                            <div class="stat-number">15+</div>
-                            <div class="stat-label">Yıl Deneyim</div>
-                        </div>
-                        <div class="stat-item">
-                            <div class="stat-number">50+</div>
-                            <div class="stat-label">Uzman Kadro</div>
-                        </div>
-                        <div class="stat-item">
-                            <div class="stat-number">%100</div>
-                            <div class="stat-label">Müşteri Memnuniyeti</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="about-image"></div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Projects Section -->
-    <section class="projects" id="projects">
-        <div class="container">
-            <h2 class="section-title">Son Projelerimiz</h2>
-            <div class="projects-grid">
+            <h2 class="section-title">Biten Projeler</h2>
+            <div class="projects-grid" id="completedGrid">
+                <!-- Örnek proje -->
                 <div class="project-card">
-                    <div class="project-image"></div>
+                    <!-- Resim eklemek için: assets/projects/project1.jpg -->
+                    <img class="project-image" src="assets/projects/project1.jpg" alt="Lüks Villa Projesi" onerror="this.style.background='#eee';this.src='';"/>
                     <div class="project-info">
                         <h3>Lüks Villa Projesi</h3>
                         <p>Modern tasarım anlayışı ile hayata geçirilen 3 katlı prefabrik villa kompleksi.</p>
-                        <div class="project-meta">
-                            <span>Alan: 250m²</span>
-                            <span>Süre: 45 gün</span>
-                        </div>
+                        <div class="project-meta"><span>Alan: 250m²</span><span>Süre: 45 gün</span></div>
                     </div>
                 </div>
+                <!-- Yeni projeleri buraya aynen kopyala -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Ongoing Projects -->
+    <section id="ongoing">
+        <div class="container">
+            <h2 class="section-title">Devam Eden Projeler</h2>
+            <div class="projects-grid" id="ongoingGrid">
                 <div class="project-card">
-                    <div class="project-image"></div>
+                    <img class="project-image" src="assets/projects/project4.jpg" alt="Ofis Binası" onerror="this.style.background='#eee';this.src='';"/>
                     <div class="project-info">
-                        <h3>Ofis Binası Kompleksi</h3>
+                        <h3>Ofis Binası Kompleksi (Devam ediyor)</h3>
                         <p>İstanbul'da inşa edilen 2 katlı modern ofis binası ve ek tesisler.</p>
-                        <div class="project-meta">
-                            <span>Alan: 800m²</span>
-                            <span>Süre: 60 gün</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="project-card">
-                    <div class="project-image"></div>
-                    <div class="project-info">
-                        <h3>Eğitim Kampüsü</h3>
-                        <p>Anaokulu ve ilkokul olmak üzere toplam 12 derslikli eğitim kompleksi.</p>
-                        <div class="project-meta">
-                            <span>Alan: 1200m²</span>
-                            <span>Süre: 90 gün</span>
-                        </div>
+                        <div class="project-meta"><span>Alan: 800m²</span><span>Süre: 60 gün</span></div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Contact Section -->
+    <!-- Contact -->
     <section class="contact" id="contact">
         <div class="container">
-            <h2 class="section-title">İletişime Geçin</h2>
+            <h2 class="section-title">İletişim</h2>
             <div class="contact-content">
                 <div class="contact-info">
                     <h3>İletişim Bilgileri</h3>
-                    <div class="contact-item">
-                        <div class="contact-icon">📍</div>
-                        <div>
-                            <strong>Adres:</strong><br>
-                            Atatürk Mah. İnşaat Cad. No:123<br>
-                            İstanbul, Türkiye
-                        </div>
-                    </div>
-                    <div class="contact-item">
-                        <div class="contact-icon">📞</div>
-                        <div>
-                            <strong>Telefon:</strong><br>
-                            +90 212 555 0123
-                        </div>
-                    </div>
-                    <div class="contact-item">
-                        <div class="contact-icon">✉️</div>
-                        <div>
-                            <strong>E-posta:</strong><br>
-                            info@yapiinsaat.com
-                        </div>
-                    </div>
-                    <div class="contact-item">
-                        <div class="contact-icon">🕒</div>
-                        <div>
-                            <strong>Çalışma Saatleri:</strong><br>
-                            Pzt-Cum: 08:00-18:00<br>
-                            Cmt: 08:00-16:00
-                        </div>
-                    </div>
-                </div>
-                <form class="contact-form">
-                    <div class="form-group">
-                        <label for="name">Adınız Soyadınız</label>
-                        <input type="text" id="name" name="name" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="email">E-posta Adresiniz</label>
-                        <input type="email" id="email" name="email" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="phone">Telefon Numaranız</label>
-                        <input type="tel" id="phone" name="phone">
-                    </div>
-                    <div class="form-group">
-                        <label for="subject">Konu</label>
-                        <input type="text" id="subject" name="subject" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="message">Mesajınız</label>
-                        <textarea id="message" name="message" rows="5" required></textarea>
-                    </div>
-                    <button type="submit" class="submit-btn">Mesaj Gönder</button>
-                </form>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <p>&copy; 2024 Yapı İnşaat. Tüm hakları saklıdır. | Prefabrik yapı çözümlerinde güvenilir adres</p>
-        </div>
-    </footer>
-
-    <script>
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
-
-        // Mobile menu toggle
-        const mobileMenu = document.querySelector('.mobile-menu');
-        const navLinks = document.querySelector('.nav-links');
-
-        mobileMenu.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-        });
-
-        // Form submission
-        document.querySelector('.contact-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            alert('Mesajınız gönderildi! En kısa sürede size dönüş yapacağız.');
-            this.reset();
-        });
-
-        // Add scroll effect to header
-        window.addEventListener('scroll', () => {
-            const header = document.querySelector('header');
-            if (window.scrollY > 100) {
-                header.style.background = 'linear-gradient(135deg, #1a1a1a 0%, #2c2c2c 100%)';
-                header.style.backdropFilter = 'blur(10px)';
-            } else {
-                header.style.background = 'linear-gradient(135deg, #1a1a1a 0%, #2c2c2c 100%)';
-                header.style.backdropFilter = 'none';
-            }
-        });
-
-        // Intersection Observer for animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
-        }, observerOptions);
-
-        // Observe all cards and sections
-        document.querySelectorAll('.service-card, .project-card, .about-text').forEach(el => {
-            el.style.opacity = '0';
-            el.style.transform = 'translateY(30px)';
-            el.style.transition = 'all 0.6s ease';
-            observer.observe(el);
-        });
-    </script>
-</body>
-
-</html>
-
-
+                    <div class="contact-item"><div class="contact-icon">📍</div><div><strong>Adres:</strong><br>Cevizli Mah. Tugay Yolu Cad. No:20/A<br>Maltepe / İSTANBUL</div></div>
+                    <div class="contact-item"><div class="contact-icon">📞</div><div><strong>Fikret SANCAK</strong><br>0544 875 34 57</div></div>
+                    <div class="contact-item"><div class="contact-icon">📞</div><div><strong>Selimcan SANCAK</strong><br>0545 347 86 07</div></div>
+                    <div
